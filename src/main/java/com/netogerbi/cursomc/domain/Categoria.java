@@ -1,11 +1,14 @@
 package com.netogerbi.cursomc.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 //mapeamento Objeto relacional
 @Entity
@@ -17,6 +20,10 @@ public class Categoria implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	private Integer ID;
 	private String name;
+	
+	//associações
+	@ManyToMany(mappedBy="categorias")
+	private List<Produto> produtos = new ArrayList<>();
 	
 	public Categoria() {
 	}
@@ -49,6 +56,14 @@ public class Categoria implements Serializable {
 		int result = 1;
 		result = prime * result + ((ID == null) ? 0 : ID.hashCode());
 		return result;
+	}
+	
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProduto(List<Produto> produto) {
+		this.produtos = produto;
 	}
 
 	@Override
