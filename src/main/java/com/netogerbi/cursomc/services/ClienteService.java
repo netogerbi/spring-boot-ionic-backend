@@ -13,10 +13,10 @@ import com.netogerbi.cursomc.services.exceptions.ObjectNotFoundException;
 public class ClienteService {
 	
 	@Autowired
-	private ClienteRepository clienteRepository;
+	private ClienteRepository repo;
 	
 	public Cliente buscar(Integer id) {
-		Optional<Cliente> obj = clienteRepository.findById(id);
+		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+ id + ", Tipo: " + Cliente.class.getName()));
 	}
 }

@@ -7,20 +7,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.netogerbi.cursomc.domain.Categoria;
-import com.netogerbi.cursomc.services.CategoriaService;
+import com.netogerbi.cursomc.domain.Pedido;
+import com.netogerbi.cursomc.services.PedidoService;
 
 @RestController
-@RequestMapping(value="/categorias")
-public class CategoriaResources {
-	
+@RequestMapping(value="/pedidos")
+public class PedidoResource {
+
 	@Autowired
-	private CategoriaService service;
+	private PedidoService pedidoService;
 	
-	@RequestMapping(value="/{id}" ,method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Categoria obj = service.buscar(id);
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<?> find(@PathVariable Integer id){
+		Pedido obj = pedidoService.buscar(id);
 		return ResponseEntity.ok(obj);
 	}
-
 }
