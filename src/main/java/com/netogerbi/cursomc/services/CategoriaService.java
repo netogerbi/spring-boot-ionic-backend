@@ -2,8 +2,8 @@ package com.netogerbi.cursomc.services;
 
 import java.util.Optional;
 
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.netogerbi.cursomc.domain.Categoria;
@@ -36,7 +36,7 @@ public class CategoriaService {
 		find(id);
 		try {
 			repository.deleteById(id);
-		}catch(ConstraintViolationException e){
+		}catch(DataIntegrityViolationException e){
 			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos!");
 		}
 		
