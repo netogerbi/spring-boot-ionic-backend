@@ -8,6 +8,7 @@ public class StandardError implements Serializable {
 	private Integer status;
 	private String msg;
 	private Long timeStamp;
+	//pesquisar como inserir nome da classe Exception
 	
 	public StandardError(Integer status, String msg, Long timeStamp) {
 		super();
