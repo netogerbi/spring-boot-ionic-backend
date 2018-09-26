@@ -18,11 +18,11 @@ public class Endereco implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String cep;
 	private String logradouro;
 	private String numero;
 	private String complemento;
 	private String bairro;
+	private String cep;
 	
 	@ManyToOne
 	@JoinColumn(name="cidade_id")
