@@ -15,11 +15,11 @@ import com.netogerbi.cursomc.services.PedidoService;
 public class PedidoResource {
 
 	@Autowired
-	private PedidoService pedidoService;
+	private PedidoService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Pedido> find(@PathVariable Integer id){
-		Pedido obj = pedidoService.find(id);
+		Pedido obj = service.find(id);
 		return ResponseEntity.ok(obj);
 	}
 }
