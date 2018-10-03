@@ -1,8 +1,11 @@
 package com.netogerbi.cursomc.domain;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -132,6 +135,28 @@ public class Pedido implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		NumberFormat nf =  NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+		StringBuilder builder = new StringBuilder();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		builder.append("Pedido número: ");
+		builder.append(this.getId());
+		builder.append(", Instante: ");
+		builder.append(sdf.format(this.getInstante()));
+		builder.append(", Cliente: ");
+		builder.append(this.getCliente().getNome());
+		builder.append(", Pagamento: ");
+		builder.append(this.getPagamento().getEstado().getDescricao());
+		builder.append("\nDetalhes:\n");
+		for(ItemPedido ip : getItens()) {
+			builder.append(ip.toString());
+		}
+		builder.append("valor total: ");
+		builder.append(nf.format(this.getValorTotal()));
+		return builder.toString();
 	}
 	
 	
