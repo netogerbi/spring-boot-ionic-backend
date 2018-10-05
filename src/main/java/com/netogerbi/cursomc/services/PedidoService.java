@@ -14,6 +14,7 @@ import com.netogerbi.cursomc.repositories.ItemPedidoRepository;
 import com.netogerbi.cursomc.repositories.PagamentoRepository;
 import com.netogerbi.cursomc.repositories.PedidoRepository;
 import com.netogerbi.cursomc.services.exceptions.ObjectNotFoundException;
+import com.netogerbi.cursomc.services.EmailService;;
 
 @Service
 public class PedidoService {
