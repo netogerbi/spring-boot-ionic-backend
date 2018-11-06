@@ -15,6 +15,7 @@ import com.netogerbi.cursomc.services.SmtpEmailService;
 @Configuration
 @Profile("dev")
 public class DevConfig {
+	
  	@Autowired
 	private DBService dbService;
 	
