@@ -64,6 +64,22 @@ public class ClienteService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+ id + ", Tipo: " + Cliente.class.getName()));
 	}
 	
+	public List<Cliente> findAll(){
+		return repository.findAll();
+	}
+	
+	public Cliente findByEmail(String email) {
+		UserSS user = UserService.authenticated();
+		if(user==null || !user.hasRole(Perfil.ADMIN) || !email.equals(user.getUsername())) {
+			throw new AuthorizationException("Acesso Negado!");
+		}
+		Cliente obj = repository.findByEmail(email);
+		if(obj == null) {
+			throw new ObjectNotFoundException("Objeto não encontrado! id: "+user.getId()+", Tipo: "+Cliente.class.getName());
+		}
+		return obj;
+	}
+	
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
 		obj = repository.save(obj);
@@ -84,10 +100,6 @@ public class ClienteService {
 		}catch(DataIntegrityViolationException e){
 			throw new DataIntegrityException("Não é possível excluir uma pois há pedidos relacionados!");
 		}	
-	}
-	
-	public List<Cliente> findAll(){
-		return repository.findAll();
 	}
 	
 	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
