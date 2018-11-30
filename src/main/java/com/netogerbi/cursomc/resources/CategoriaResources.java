@@ -36,7 +36,7 @@ public class CategoriaResources {
 	}
 	
 	@PreAuthorize("hasAnyRole('ADMIN')")
-	@RequestMapping(method=RequestMethod.POST)	
+	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDto){
 		Categoria obj = service.FromDto(objDto);
 		obj = service.insert(obj);
