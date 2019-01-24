@@ -43,7 +43,7 @@ public abstract class AbstractEmailService implements EmailService {
 		return sm;
 	}
 	
-	protected String htmlFromTamplaPedido(Pedido obj) {
+	protected String htmlFromTamplatePedido(Pedido obj) {
 		Context context = new Context();
 		context.setVariable("pedido", obj);
 		return templateEngine.process("email/confirmacaoPedido", context);
@@ -68,7 +68,7 @@ public abstract class AbstractEmailService implements EmailService {
 		mmh.setFrom(sender);
 		mmh.setSubject("Pedido Confirmado - Código:"+obj.getId());
 		mmh.setSentDate(new Date(System.currentTimeMillis()));
-		mmh.setText(htmlFromTamplaPedido(obj), true);
+		mmh.setText(htmlFromTamplatePedido(obj), true);
 		return mimeMessage;
 	}
 	
